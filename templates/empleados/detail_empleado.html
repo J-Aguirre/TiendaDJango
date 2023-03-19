@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ empleado.full_name }}
+{% endblock title %}
+    
+{% block content %}
+    {% include 'includes/header.html' %}
+
+    <h1>Detalle de Empleado</h1>
+    {{empleado.full_name}}
+
+    <h3>Todos los Datos: </h3>
+    <p>{{ empleado.first_name }}</p>
+    <p>{{ empleado.last_name }}</p>
+    <p>{{ empleado.departamento }}</p>
+    <p>
+        <ul>
+            {% for habilidad in empleado.habilidades.all %}
+                <li>{{ habilidad }}</li>
+            {% endfor %}
+        </ul>
+    </p>
+    <p>
+        <div>{{ empleado.get_job_display }}</div>
+        {% if empleado.image %}
+            <img src="{{ empleado.image.url }}">
+        {% else %}
+            <img src="{% static 'img/user.png' %}">
+        {% endif %}
+    </p>
+    <a class="button success" href="{% url 'empleado_app:listar_empleados' %}">Regresar</a>
+{% endblock content %}

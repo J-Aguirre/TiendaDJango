@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Listar Departamentos    
+{% endblock title %}
+    
+
+{% block content %}
+{% include 'includes/header.html' %}
+    <h1>Listar Departamento</h1>
+    <div>
+        <div>
+            <!-- tabla de departamentos -->
+            <table>
+                <tbody>
+                    {% for object in object_list %}
+                        <tr>
+                            <td width="100">{{ object.name }}</td>
+                            <td width="100">{{ object.short_name }}</td>
+                            <td><a href="{% url 'empleado_app:listar_por_departamento' object.short_name %}">Ver Empleados</a></td> 
+                        </tr>
+                    {% endfor %}
+                </tbody>
+              </table>
+        </div>
+    </div>
+{% endblock content %}
+    
+
+
+

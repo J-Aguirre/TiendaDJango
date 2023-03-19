@@ -1,0 +1,9 @@
+<h1>Listando elementos de la BD Prueba</h1>
+
+{{ list_prueba }}
+
+<ul>
+    {% for prueba in list_prueba %}
+        <li> {{ prueba.titulo }} </li>
+    {% endfor %}
+</ul>    

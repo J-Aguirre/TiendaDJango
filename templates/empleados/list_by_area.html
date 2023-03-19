@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Trabajadores por Departamento
+{% endblock title %}
+
+
+{% block content %}
+    {% include 'includes/header.html' %}
+    <div>
+        <table>
+            <thead>
+              <tr>
+                <th width="100">ID</th>
+                <th width="150">Nombres</th>
+                <th width="150">Apellidos</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for object in object_list %}
+                    <tr>
+                        <td>{{ object.id }}</td>
+                        <td>{{ object.first_name }}</td>
+                        <td>{{ object.last_name }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+    </div>
+{% endblock content %}
+    

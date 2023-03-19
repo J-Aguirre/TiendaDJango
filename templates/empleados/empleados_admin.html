@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Administrar Empleados
+{% endblock title %}
+
+
+{% block content %}
+    {% include 'includes/header.html' %}
+    <h1>Aministrar Empleados</h1>
+
+    <div>
+        <!-- tabla de empleados -->
+        <table>
+            <thead>
+              <tr>
+                <th width="100">ID</th>
+                <th width="150">Nombres</th>
+                <th width="150">Apelidos</th>
+                <th width="150">Departamento</th>
+                <th width="50">Accion</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for object in object_list %}
+                    <tr>
+                        <td>{{ object.id }}</td>
+                        <td>{{ object.first_name }}</td>
+                        <td>{{ object.last_name }}</td>
+                        <td>{{ object.departamento }}</td>
+                        <td>
+                            <a class="button success" href=" {% url 'empleado_app:actualizar_empleado' object.id %}">Editar</a>
+                            <br>
+                            <a href=" {% url 'empleado_app:borrar_empleado' object.id %}">Eliminar</a></td> 
+                    </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+    </div>
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+{% endblock content %}
+    
+    
